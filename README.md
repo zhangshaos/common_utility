@@ -1,8 +1,5 @@
 ﻿# common_utility
 
-all codes are saving in the repository https://github.com/zhangshaos/Explorer
- (private now !)
-
 ## Disjoint Set
 
 `class id` need to be increasing, and starting at 0.
@@ -15,7 +12,11 @@ https://github.com/zhangshaos/better_assert
 
 modified mean-shift clustering algorithm moving original points when shifting.
 
+> depends on Eigen3.
+
 ## 2D PCA
+
+> depends on Eigen3.
 
 ## Auto Check Float Error (nan, inf)
 
