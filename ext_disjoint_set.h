@@ -40,15 +40,17 @@ struct ExtDisjointSet {
       return false;
     }
   }
-  void
+  //合并后，c1和c2的共同父亲为find_root_class(c1)，并作为返回值返回
+  const T&
   union_class(const T &c1, const T &c2){
     try_add_class(c1);
     try_add_class(c2);
-    const auto &new_par = find_root_class(c1);
+    const T &new_par = find_root_class(c1);
     parent.at(find_root_class(c2)) = new_par;
     //make find path shorter
     parent.at(c1) = new_par;
     parent.at(c2) = new_par;
+    return new_par;
   }
   void
   shorten_find_path(){
