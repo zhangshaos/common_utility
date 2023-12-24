@@ -31,21 +31,21 @@ DisjointSet::try_add_class(uint32_t c) {
   if (!contain_class(c)) {
     parent[c] = c;
     return true;
-  } else
+  } else {
     // this ID is existed.
     return false;
+  }
 }
 
 void
 DisjointSet::union_class(uint32_t c1, uint32_t c2) {
   try_add_class(c1);
   try_add_class(c2);
-  c1 = find_root_class(c1);
-  c2 = find_root_class(c2);
-  if (c1 <= c2)
-    parent[c2] = c1;
-  else
-    parent[c1] = c2;
+  uint32_t new_par = find_root_class(c1);
+  parent[find_root_class(c2)] = new_par;
+  //make find path shorter
+  parent[c1] = new_par;
+  parent[c2] = new_par;
 }
 
 uint32_t
@@ -71,7 +71,8 @@ DisjointSet::shrink_parent(std::vector<uint32_t> *out_shrink_parent) {
       ++start_parent_class;
     }
   }
-  if (out_shrink_parent)
+  if (out_shrink_parent) {
     out_shrink_parent->swap(shrink_parent);
+  }
   return start_parent_class;
 }
